@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   FormControl,
   FormGroup,
@@ -13,9 +14,10 @@ import { LoginUseCase } from '../../../application/login.usecase';
   standalone: true,
   selector: 'app-login',
   templateUrl: './login.component.html',
-  imports: [ReactiveFormsModule, AplazoButtonComponent, AplazoLogoComponent],
+  imports: [ReactiveFormsModule, CommonModule, AplazoButtonComponent, AplazoLogoComponent],
 })
 export class LoginComponent {
+  public passwordVisible: boolean = false;
   readonly loginUseCase = inject(LoginUseCase);
 
   readonly username = new FormControl<string>('', {
@@ -40,5 +42,9 @@ export class LoginComponent {
         password: this.password.value,
       })
       .subscribe();
+  }
+
+  togglePasswordVisibility(): void {
+    this.passwordVisible = !this.passwordVisible;
   }
 }
