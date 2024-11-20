@@ -1,39 +1,60 @@
-<aplz-ui-logo size="lg"></aplz-ui-logo>
+<div class="flex items-center justify-center h-screen bg-gray-50">
+  <form
+    [formGroup]="form"
+    (ngSubmit)="login()"
+    class="bg-white p-8 rounded-lg shadow-md w-full max-w-md"
+  >
 
-<form [formGroup]="form" (ngSubmit)="login()">
-  <div class="grid gap-6 mb-6 md:grid-cols-2">
-    <div>
-      <label for="username" class="block mb-2 text-sm font-medium text-dark">
-        Correo electrónico
+    <div class="text-center mb-12">
+      <aplz-ui-logo size="lg"></aplz-ui-logo>
+    </div>
+
+    <div class="text-center text-2xl font-medium text-gray-800 mb-16">
+      Iniciar sesión como comerciante
+    </div>
+
+    <div class=" relative mb-16">
+      <label for="username"
+            class="absolute left-[15px] top-[-8.5px] text-sm font-medium text-dark bg-white px-1"
+      >
+        Correo electrónico o Usuario
       </label>
       <input
         type="text"
         id="username"
-        class="bg-dark-background border border-dark-secondary text-dark rounded-lg focus:ring-special-info focus:border-special-info block w-full p-2.5"
-        placeholder="my_example_username"
+        class="bg-white border border-dark-secondary text-dark rounded-lg focus:ring-special-info focus:border-special-info block w-full p-2.5"
+        placeholder="Escribe tu correo electrónico"
         formControlName="username"
       />
     </div>
-    <div>
-      <label for="password" class="block mb-2 text-sm font-medium text-dark">
-        Password
+
+    <div class="relative mb-12">
+      <label
+        for="password"
+        class="absolute left-[15px] top-[-8.5px] text-sm font-medium text-dark  bg-white px-1"
+      >
+        Contraseña
       </label>
       <input
-        type="password"
-        id="password"
-        class="bg-dark-background border border-dark-secondary text-dark rounded-lg focus:ring-special-info focus:border-special-info block w-full p-2.5"
-        placeholder="•••••••••"
-        formControlName="password"
+      type="password"
+      id="password"
+      class="bg-white border border-dark-secondary text-dark rounded-lg focus:ring-special-info focus:border-special-info block w-full p-2.5"
+      placeholder="Escribe tu contraseña"
+      formControlName="password"
       />
     </div>
-  </div>
-  <button
-    aplzButton
-    aplzAppearance="stroked"
-    aplzColor="dark"
-    size="md"
-    type="submit"
-  >
-    Entrar
-  </button>
-</form>
+
+    <button
+      aplzButton
+      aplzAppearance="stroked"
+      aplzColor="dark"
+      size="md"
+      type="submit"
+      [fullWidth]="true"
+      [rounded]="true"
+    >
+      Iniciar Sesión
+    </button>
+  </form>
+</div>
+
