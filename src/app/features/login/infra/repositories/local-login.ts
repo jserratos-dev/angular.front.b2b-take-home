@@ -12,8 +12,8 @@ export class LocalLogin implements LoginRepository {
 
   authenticate(credentials: Credentials): Observable<string | never> {
     if (
-      credentials.username === 'mySuper4dmin@gmail.com' &&
-      credentials.password === 'mySuper4dmin'
+      credentials.username === 'mysuper4dmin@gmail.com' &&
+      credentials.password === 'mysuper4dmin'
     ) {
       return of(this.#token);
     }
