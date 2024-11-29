@@ -21,3 +21,7 @@
 .aplazo-sidenav-link__icon--empty {
   @apply w-8 h-8;
 }
+
+.aplazo-sidenav-link__icon {
+  @apply mr-2;
+}

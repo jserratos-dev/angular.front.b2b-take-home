@@ -1,13 +1,17 @@
 /* eslint-disable @angular-eslint/no-inputs-metadata-property */
 import { NgIf } from '@angular/common';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   HostBinding,
   inject,
   Input,
   OnDestroy,
   OnInit,
+  Renderer2,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { RouterLinkActive, RouterModule } from '@angular/router';
@@ -28,27 +32,31 @@ let nextUniqueId = 0;
     },
   ],
   template: `
+    <div class="aplazo-sidenav-link__icon" #svgContainer></div> 
     <span class="aplazo-sidenav-link__label aplazo-sidenav-link__label-pretty">
-      <ng-content></ng-content>
+        <ng-content></ng-content>
     </span>
   `,
   styleUrls: ['./aplazo-sidenav-link.component.css'],
 })
-export class AplazoSidenavLinkComponent implements OnInit, OnDestroy {
+export class AplazoSidenavLinkComponent implements OnInit, OnDestroy, AfterViewInit  {
+  
+  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  
   readonly #routerLink: RouterLinkActive | null = inject(RouterLinkActive, {
     host: true,
     optional: true,
   });
-
+  
   #destroy = new Subject<void>();
-
+  
   #classnames = {
     base: 'aplazo-sidenav-link',
     modifier: 'aplazo-sidenav-link--no-selection',
   };
-
+  
   #uid = `aplz-ui-sidenav-link--${nextUniqueId++}`;
-
+  
   @Input()
   set id(value: string) {
     this.#id = value || this.#uid;
@@ -57,6 +65,9 @@ export class AplazoSidenavLinkComponent implements OnInit, OnDestroy {
     return this.#id;
   }
   #id: string = this.#uid;
+  
+  @ViewChild('svgContainer', { static: false }) svgContainer!: ElementRef;
+  @Input() svgIcon: string | null = null;
 
   /** Internal reference to handle the classes of the host
    * @ignore
@@ -82,6 +93,11 @@ export class AplazoSidenavLinkComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
+  ngAfterViewInit() {
+    if (this.svgContainer) {
+      this.renderer.setProperty(this.svgContainer.nativeElement, 'innerHTML', this.svgIcon);
+    }
+  }
   ngOnDestroy(): void {
     this.#destroy.next();
     this.#destroy.complete();

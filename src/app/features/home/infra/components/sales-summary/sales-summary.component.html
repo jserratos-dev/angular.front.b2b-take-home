@@ -1,0 +1,27 @@
+<div class="">
+    <h2 class="text-xl font-bold mb-4">RESUMEN DE PEDIDOS</h2>
+</div>
+
+<div style="background-color: #1f2937;" >
+    <div class="mx-auto text-white p-4 rounded-lg shadow-lg mt-0" >
+        <div class="flex justify-between">
+          <div class="text-center flex-1">
+            <p class="text-sm font-semibold mb-2">TOTAL DE VENTAS</p>
+            <p class="text-2xl font-bold">{{ summary?.totalSales | currency }} </p>
+          </div>
+          <div class="w-px bg-gray-600 mx-4" style="background-color: #fff;"></div>
+            <div class="text-center flex-1">
+            <p class="text-sm font-semibold mb-2">NÚMERO DE PEDIDOS</p>
+            <p class="text-2xl font-bold">{{ summary?.totalOrders  }}</p>
+          </div>
+      
+          <div class="w-px bg-gray-600 mx-4" style="background-color: #fff;"></div>
+      
+          <div class="text-center flex-1">
+            <p class="text-sm font-semibold mb-2">TICKET PROMEDIO</p>
+            <p class="text-2xl font-bold">{{ summary?.averageTicket | number: '1.3-3' }}</p>
+          </div>
+        </div>
+    </div>
+</div>
+  
